@@ -37,11 +37,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root) {
-    animation: vt-out 0.22s ease forwards;
+    animation: vt-out 0.38s ease forwards;
   }
 
   ::view-transition-new(root) {
-    animation: vt-in 0.22s ease forwards;
+    animation: vt-in 0.38s ease forwards;
   }
 }
 

@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className={`site-nav${isSolid ? ' solid' : ''}`}>
       <div className="nav-container">
-        <NavLink to="/" className={`nav-brand${!isHome ? ' nav-brand-glow' : ''}`} end viewTransition onClick={() => trigger('selection')}>
+        <NavLink to="/" className={`nav-brand${!isHome ? ' nav-brand-glow' : ''}`} end viewTransition={!isHome} onClick={() => trigger('selection')}>
           MIMO
         </NavLink>
 
@@ -41,9 +41,9 @@ const Navbar = () => {
         </button>
 
         <ul className={`nav-links${menuOpen ? ' open' : ''}`}>
-          <li><NavLink to="/portfolio" viewTransition onClick={() => trigger('selection')}>Portfolio</NavLink></li>
-          <li><NavLink to="/contact" viewTransition onClick={() => trigger('selection')}>Contact</NavLink></li>
-          <li><NavLink to="/resume" viewTransition onClick={() => trigger('selection')}>Resume</NavLink></li>
+          <li><NavLink to="/portfolio" viewTransition={pathname !== '/portfolio'} onClick={() => trigger('selection')}>Portfolio</NavLink></li>
+          <li><NavLink to="/contact" viewTransition={pathname !== '/contact'} onClick={() => trigger('selection')}>Contact</NavLink></li>
+          <li><NavLink to="/resume" viewTransition={pathname !== '/resume'} onClick={() => trigger('selection')}>Resume</NavLink></li>
         </ul>
       </div>
     </nav>
