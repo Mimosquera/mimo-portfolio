@@ -1,22 +1,17 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useWebHaptics } from 'web-haptics/react';
+import { ease, vp } from '../utils/motion';
+import { useEntryDelay } from '../context/TransitionDelay';
 
 const EMPTY = { name: '', email: '', message: '' };
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 32, filter: 'blur(6px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-};
-
-const ease = [0.22, 1, 0.36, 1];
-const vp = { once: true, margin: '-60px' };
 
 const Contact = () => {
   const [form, setForm] = useState(EMPTY);
   const [fieldErrors, setFieldErrors] = useState({});
-  const [modal, setModal] = useState(null); // 'error' | 'success' | 'network'
+  const [modal, setModal] = useState(null);
   const { trigger } = useWebHaptics();
+  const d = useEntryDelay();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -60,57 +55,68 @@ const Contact = () => {
 
   const closeModal = () => setModal(null);
 
+  useEffect(() => {
+    if (!modal) return;
+    const onKey = e => { if (e.key === 'Escape') closeModal(); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [modal]);
+
   return (
-    <main>
+    <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
       <section className="section">
         <motion.p
           className="section-label"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={vp}
-          transition={{ duration: 0.6, ease }}
+          transition={{ duration: 0.6, ease, delay: d }}
         >
           Contact
         </motion.p>
         <motion.h2
           className="section-title"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={vp}
-          transition={{ duration: 0.7, ease, delay: 0.08 }}
+          transition={{ duration: 0.7, ease, delay: 0.08 + d }}
         >
           Get in Touch
         </motion.h2>
+
         <div className="contact-layout">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={vp}
-            transition={{ duration: 0.7, ease, delay: 0.16 }}
-          >
-            <p className="contact-desc">
+          <div>
+            <motion.p
+              className="contact-desc"
+              initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={vp}
+              transition={{ duration: 0.65, ease, delay: 0.1 + d }}
+            >
               If you have a role or project in mind, reach out. I check my
               email every day.
-            </p>
-            <nav className="contact-links" aria-label="Contact details">
+            </motion.p>
+            <motion.nav
+              className="contact-links"
+              aria-label="Contact details"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.55, ease, delay: 0.2 + d }}
+            >
               <a href="tel:3477037291">347-703-7291</a>
               <a href="mailto:michael2000ny@gmail.com">michael2000ny@gmail.com</a>
-            </nav>
-          </motion.div>
+            </motion.nav>
+          </div>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            noValidate
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={vp}
-            transition={{ duration: 0.7, ease, delay: 0.28 }}
-          >
-            <div className="form-field">
+          <form onSubmit={handleSubmit} noValidate>
+            <motion.div
+              className="form-field"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.55, ease, delay: 0.1 + d }}
+            >
               <label htmlFor="name">Name</label>
               <input
                 id="name"
@@ -120,9 +126,17 @@ const Contact = () => {
                 value={form.name}
                 onChange={handleChange}
                 autoComplete="name"
+                aria-invalid={fieldErrors.name ? 'true' : undefined}
               />
-            </div>
-            <div className="form-field">
+            </motion.div>
+
+            <motion.div
+              className="form-field"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.55, ease, delay: 0.18 + d }}
+            >
               <label htmlFor="email">Email</label>
               <input
                 id="email"
@@ -132,9 +146,17 @@ const Contact = () => {
                 value={form.email}
                 onChange={handleChange}
                 autoComplete="email"
+                aria-invalid={fieldErrors.email ? 'true' : undefined}
               />
-            </div>
-            <div className="form-field">
+            </motion.div>
+
+            <motion.div
+              className="form-field"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.55, ease, delay: 0.26 + d }}
+            >
               <label htmlFor="message">Message</label>
               <textarea
                 id="message"
@@ -144,45 +166,74 @@ const Contact = () => {
                 value={form.message}
                 onChange={handleChange}
                 autoComplete="off"
+                aria-invalid={fieldErrors.message ? 'true' : undefined}
               />
-            </div>
-            <button type="submit" className="btn btn-accent">
+            </motion.div>
+
+            <motion.button
+              type="submit"
+              className="btn btn-accent"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.5, ease, delay: 0.34 + d }}
+            >
               Send
-            </button>
-          </motion.form>
+            </motion.button>
+          </form>
         </div>
       </section>
 
-      {modal && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
-            {modal === 'success' && (
-              <>
-                <p className="modal-icon">&#10003;</p>
-                <h3 className="modal-title">Message sent</h3>
-                <p className="modal-body">Thanks for reaching out. I'll get back to you soon.</p>
-              </>
-            )}
-            {modal === 'error' && (
-              <>
-                <p className="modal-icon modal-icon-error">&#33;</p>
-                <h3 className="modal-title">Missing information</h3>
-                <p className="modal-body">Please fill in all required fields before sending.</p>
-              </>
-            )}
-            {modal === 'network' && (
-              <>
-                <p className="modal-icon modal-icon-error">&#33;</p>
-                <h3 className="modal-title">Something went wrong</h3>
-                <p className="modal-body">Your message couldn't be sent. Try emailing me directly at michael2000ny@gmail.com.</p>
-              </>
-            )}
-            <button className="btn btn-accent modal-btn" onClick={closeModal}>
-              {modal === 'success' ? 'Close' : 'OK'}
-            </button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {modal && (
+          <motion.div
+            key="modal-overlay"
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+              initial={{ opacity: 0, scale: 0.96, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 10 }}
+              transition={{ duration: 0.22, ease }}
+              onClick={e => e.stopPropagation()}
+            >
+              {modal === 'success' && (
+                <>
+                  <p className="modal-icon">&#10003;</p>
+                  <h3 className="modal-title" id="modal-title">Message sent</h3>
+                  <p className="modal-body">Thanks for reaching out. I'll get back to you soon.</p>
+                </>
+              )}
+              {modal === 'error' && (
+                <>
+                  <p className="modal-icon modal-icon-error">&#33;</p>
+                  <h3 className="modal-title" id="modal-title">Missing information</h3>
+                  <p className="modal-body">Please fill in all required fields before sending.</p>
+                </>
+              )}
+              {modal === 'network' && (
+                <>
+                  <p className="modal-icon modal-icon-error">&#33;</p>
+                  <h3 className="modal-title" id="modal-title">Something went wrong</h3>
+                  <p className="modal-body">Your message couldn't be sent. Try emailing me directly at michael2000ny@gmail.com.</p>
+                </>
+              )}
+              <button className="btn btn-accent modal-btn" onClick={closeModal} autoFocus>
+                {modal === 'success' ? 'Close' : 'OK'}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 };

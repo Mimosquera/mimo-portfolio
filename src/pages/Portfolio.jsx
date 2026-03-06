@@ -1,18 +1,14 @@
 import { motion } from 'motion/react';
 import ProjectCard from '../components/ProjectCard';
 import projects from '../data/projects';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 32, filter: 'blur(6px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-};
-
-const ease = [0.22, 1, 0.36, 1];
-const vp = { once: true, margin: '-60px' };
+import { fadeUp, ease, vp } from '../utils/motion';
+import { useEntryDelay } from '../context/TransitionDelay';
 
 const Portfolio = () => {
+  const d = useEntryDelay();
+
   return (
-    <main>
+    <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
       <section className="section">
         <motion.p
           className="section-label"
@@ -20,7 +16,7 @@ const Portfolio = () => {
           initial="hidden"
           whileInView="visible"
           viewport={vp}
-          transition={{ duration: 0.6, ease }}
+          transition={{ duration: 0.6, ease, delay: d }}
         >
           Work
         </motion.p>
@@ -30,22 +26,13 @@ const Portfolio = () => {
           initial="hidden"
           whileInView="visible"
           viewport={vp}
-          transition={{ duration: 0.7, ease, delay: 0.08 }}
+          transition={{ duration: 0.7, ease, delay: 0.08 + d }}
         >
           Portfolio
         </motion.h2>
         <div className="projects-grid">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={vp}
-              transition={{ duration: 0.65, ease, delay: i * 0.12 }}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
+          {projects.map(project => (
+            <ProjectCard key={project.id} {...project} />
           ))}
         </div>
       </section>

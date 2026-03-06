@@ -1,24 +1,15 @@
 import { motion } from 'motion/react';
 import Hero from '../components/layout/Hero';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 36, filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-};
-
-const slideIn = {
-  hidden: { opacity: 0, x: -48, filter: 'blur(8px)' },
-  visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
-};
-
-const ease = [0.22, 1, 0.36, 1];
-const vp = { once: true, margin: '-80px' };
+import { fadeUp, slideLeft, ease, vp } from '../utils/motion';
+import { useEntryDelay } from '../context/TransitionDelay';
 
 const Home = () => {
+  const d = useEntryDelay();
+
   return (
     <>
       <Hero />
-      <main>
+      <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
         <section className="section">
           <motion.h2
             className="section-title"
@@ -26,7 +17,7 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={vp}
-            transition={{ duration: 0.75, ease }}
+            transition={{ duration: 0.75, ease, delay: d }}
           >
             About Me
           </motion.h2>
@@ -35,11 +26,11 @@ const Home = () => {
               src="/facecard.jpeg"
               alt="Michael Mosquera"
               className="about-photo"
-              variants={slideIn}
+              variants={slideLeft}
               initial="hidden"
               whileInView="visible"
               viewport={vp}
-              transition={{ duration: 0.9, ease }}
+              transition={{ duration: 0.9, ease, delay: d }}
             />
             <div className="about-body">
               <motion.p
@@ -47,7 +38,7 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={vp}
-                transition={{ duration: 0.7, ease, delay: 0.08 }}
+                transition={{ duration: 0.7, ease, delay: 0.08 + d }}
               >
                 I'm Michael, a full stack developer based in Virginia. I
                 completed the edX coding bootcamp in spring 2025 and have
@@ -58,7 +49,7 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={vp}
-                transition={{ duration: 0.7, ease, delay: 0.2 }}
+                transition={{ duration: 0.7, ease, delay: 0.2 + d }}
               >
                 Most of my work is on the frontend: React, component
                 architecture, routing, responsive layout. On the backend I
@@ -71,7 +62,7 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={vp}
-                transition={{ duration: 0.7, ease, delay: 0.32 }}
+                transition={{ duration: 0.7, ease, delay: 0.32 + d }}
               >
                 When something isn't clicking, I go read the source or
                 build a small version of it on my own. That's how most of

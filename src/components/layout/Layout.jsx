@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import PixelTransition from './PixelTransition';
 import ParticleBackground from './ParticleBackground';
+import { TransitionDelayProvider } from '../../context/TransitionDelay';
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -27,7 +28,8 @@ const Layout = () => {
   };
 
   return (
-    <>
+    <TransitionDelayProvider>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <ParticleBackground />
       <Navbar />
       <Outlet />
@@ -42,7 +44,7 @@ const Layout = () => {
         </svg>
       </button>
       <PixelTransition />
-    </>
+    </TransitionDelayProvider>
   );
 };
 

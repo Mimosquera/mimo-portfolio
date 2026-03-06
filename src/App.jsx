@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { MotionConfig } from 'motion/react';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App = () => <RouterProvider router={router} />;
+const App = () => (
+  <MotionConfig reducedMotion="user">
+    <RouterProvider router={router} />
+  </MotionConfig>
+);
 
 export default App;

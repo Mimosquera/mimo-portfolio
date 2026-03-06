@@ -26,6 +26,8 @@ const PixelTransition = () => {
     if (pathname === prevPath.current) return;
     prevPath.current = pathname;
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const W = window.innerWidth;
