@@ -15,9 +15,9 @@
   <body>
     <div id="root"></div>
     <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message"></textarea>
+      <input type="text" name="name" autocomplete="name" />
+      <input type="email" name="email" autocomplete="email" />
+      <textarea name="message" autocomplete="off"></textarea>
     </form>
     <script type="module" src="/src/main.jsx"></script>
   </body>

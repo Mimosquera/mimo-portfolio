@@ -1,4 +1,7 @@
+import { useWebHaptics } from 'web-haptics/react';
+
 const ProjectCard = ({ title, description, image, deploy, repo, containImage, emoji, emojiColor }) => {
+  const { trigger } = useWebHaptics();
   return (
     <article className="project-card">
       <div
@@ -21,6 +24,7 @@ const ProjectCard = ({ title, description, image, deploy, repo, containImage, em
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-accent"
+              onClick={() => trigger('light')}
             >
               Live App
             </a>
@@ -31,6 +35,7 @@ const ProjectCard = ({ title, description, image, deploy, repo, containImage, em
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline"
+              onClick={() => trigger('light')}
             >
               GitHub
             </a>

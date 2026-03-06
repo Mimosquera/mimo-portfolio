@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useWebHaptics } from 'web-haptics/react';
 
 const EMPTY = { name: '', email: '', message: '' };
 
@@ -6,6 +7,7 @@ const Contact = () => {
   const [form, setForm] = useState(EMPTY);
   const [fieldErrors, setFieldErrors] = useState({});
   const [modal, setModal] = useState(null); // 'error' | 'success' | 'network'
+  const { trigger } = useWebHaptics();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -27,6 +29,7 @@ const Contact = () => {
     if (Object.keys(errs).length) {
       setFieldErrors(errs);
       setModal('error');
+      trigger('error');
       return;
     }
     try {
@@ -39,8 +42,10 @@ const Contact = () => {
       setForm(EMPTY);
       setFieldErrors({});
       setModal('success');
+      trigger('success');
     } catch {
       setModal('network');
+      trigger('error');
     }
   };
 
@@ -97,6 +102,7 @@ const Contact = () => {
                 rows={5}
                 value={form.message}
                 onChange={handleChange}
+                autoComplete="off"
               />
             </div>
             <button type="submit" className="btn btn-accent">
