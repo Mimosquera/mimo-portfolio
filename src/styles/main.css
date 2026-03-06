@@ -542,6 +542,63 @@ button {
   border-color: var(--accent);
 }
 
+.form-input-error {
+  border-color: #e05c5c;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem 2rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-icon {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+  line-height: 1;
+}
+
+.modal-icon-error {
+  color: #e05c5c;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.modal-body {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+.modal-btn {
+  min-width: 90px;
+}
+
 textarea.form-input {
   min-height: 130px;
 }
