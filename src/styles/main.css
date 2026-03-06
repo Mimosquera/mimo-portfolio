@@ -17,32 +17,33 @@
 }
 
 /* ============================================================
-   VIEW TRANSITIONS
+   VIEW TRANSITIONS — pixel canvas handles transitions
    ============================================================ */
-@keyframes vt-out {
-  to {
-    opacity: 0;
-    filter: blur(4px);
-    transform: perspective(800px) translateZ(-24px) translateY(-6px) scale(0.98);
-  }
-}
-
-@keyframes vt-in {
-  from {
-    opacity: 0;
-    filter: blur(4px);
-    transform: perspective(800px) translateZ(-24px) translateY(6px) scale(0.98);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  ::view-transition-old(root) {
-    animation: vt-out 0.38s ease forwards;
-  }
-
+  ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation: vt-in 0.38s ease forwards;
+    animation: none;
   }
+}
+
+/* ============================================================
+   PIXEL TRANSITION CANVAS
+   ============================================================ */
+.pixel-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ============================================================
+   GLOBAL PARTICLE BACKGROUND
+   ============================================================ */
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* ============================================================
@@ -58,11 +59,11 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
   color: var(--text);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -287,11 +288,28 @@ button {
   );
 }
 
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   text-align: center;
   padding: 0 1.5rem;
+}
+
+.hero-char {
+  display: inline-block;
+}
+
+.hero-scroll-hint {
+  margin-top: 3.5rem;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1;
 }
 
 .hero-name {
@@ -401,11 +419,16 @@ button {
   gap: 1.5rem;
 }
 
+.projects-grid > div {
+  height: 100%;
+}
+
 .project-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  height: 100%;
   transition: border-color var(--ease), transform var(--ease);
 }
 

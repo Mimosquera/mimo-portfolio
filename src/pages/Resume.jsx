@@ -1,3 +1,5 @@
+import { motion } from 'motion/react';
+
 const skills = [
   'JavaScript',
   'React',
@@ -13,12 +15,38 @@ const skills = [
   'Vite',
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 32, filter: 'blur(6px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+};
+
+const ease = [0.22, 1, 0.36, 1];
+const vp = { once: true, margin: '-60px' };
+
 const Resume = () => {
   return (
     <main>
       <section className="section resume-section">
-        <p className="section-label">Background</p>
-        <h2 className="section-title">Resume</h2>
+        <motion.p
+          className="section-label"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={vp}
+          transition={{ duration: 0.6, ease }}
+        >
+          Background
+        </motion.p>
+        <motion.h2
+          className="section-title"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={vp}
+          transition={{ duration: 0.7, ease, delay: 0.08 }}
+        >
+          Resume
+        </motion.h2>
         <a
           href="/Michael-Mosquera-Resume.pdf"
           className="btn btn-outline resume-dl-mobile"
@@ -31,16 +59,30 @@ const Resume = () => {
         <div className="resume-layout">
 
           <aside>
-            <div className="resume-block">
+            <motion.div
+              className="resume-block"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={vp}
+              transition={{ duration: 0.65, ease, delay: 0.12 }}
+            >
               <p className="resume-block-title">Skills</p>
               <ul className="skill-tags">
                 {skills.map(skill => (
                   <li key={skill} className="skill-tag">{skill}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="resume-block">
+            <motion.div
+              className="resume-block"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={vp}
+              transition={{ duration: 0.65, ease, delay: 0.24 }}
+            >
               <p className="resume-block-title">Education</p>
               <div className="resume-entry">
                 <div className="entry-header">
@@ -49,7 +91,7 @@ const Resume = () => {
                 </div>
                 <p className="entry-sub">edX Coding Bootcamp</p>
               </div>
-            </div>
+            </motion.div>
 
             <div className="resume-block resume-dl-desktop">
               <a
@@ -65,7 +107,14 @@ const Resume = () => {
           </aside>
 
           <div>
-            <div className="resume-block">
+            <motion.div
+              className="resume-block"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={vp}
+              transition={{ duration: 0.65, ease, delay: 0.16 }}
+            >
               <p className="resume-block-title">Experience</p>
               <div className="resume-entry">
                 <div className="entry-header">
@@ -92,9 +141,16 @@ const Resume = () => {
                   </li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="resume-block">
+            <motion.div
+              className="resume-block"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={vp}
+              transition={{ duration: 0.65, ease, delay: 0.28 }}
+            >
               <p className="resume-block-title">Projects</p>
               <div className="resume-entry">
                 <div className="entry-header">
@@ -152,7 +208,7 @@ const Resume = () => {
                   </li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
           </div>
 
         </div>

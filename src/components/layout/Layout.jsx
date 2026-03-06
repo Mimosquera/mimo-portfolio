@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useWebHaptics } from 'web-haptics/react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import PixelTransition from './PixelTransition';
+import ParticleBackground from './ParticleBackground';
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -26,6 +28,7 @@ const Layout = () => {
 
   return (
     <>
+      <ParticleBackground />
       <Navbar />
       <Outlet />
       <Footer />
@@ -38,6 +41,7 @@ const Layout = () => {
           <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
+      <PixelTransition />
     </>
   );
 };

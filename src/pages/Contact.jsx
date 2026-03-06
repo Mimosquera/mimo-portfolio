@@ -1,7 +1,16 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import { useWebHaptics } from 'web-haptics/react';
 
 const EMPTY = { name: '', email: '', message: '' };
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32, filter: 'blur(6px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+};
+
+const ease = [0.22, 1, 0.36, 1];
+const vp = { once: true, margin: '-60px' };
 
 const Contact = () => {
   const [form, setForm] = useState(EMPTY);
@@ -54,10 +63,34 @@ const Contact = () => {
   return (
     <main>
       <section className="section">
-        <p className="section-label">Contact</p>
-        <h2 className="section-title">Get in Touch</h2>
+        <motion.p
+          className="section-label"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={vp}
+          transition={{ duration: 0.6, ease }}
+        >
+          Contact
+        </motion.p>
+        <motion.h2
+          className="section-title"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={vp}
+          transition={{ duration: 0.7, ease, delay: 0.08 }}
+        >
+          Get in Touch
+        </motion.h2>
         <div className="contact-layout">
-          <div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={vp}
+            transition={{ duration: 0.7, ease, delay: 0.16 }}
+          >
             <p className="contact-desc">
               If you have a role or project in mind, reach out. I check my
               email every day.
@@ -66,9 +99,17 @@ const Contact = () => {
               <a href="tel:3477037291">347-703-7291</a>
               <a href="mailto:michael2000ny@gmail.com">michael2000ny@gmail.com</a>
             </nav>
-          </div>
+          </motion.div>
 
-          <form onSubmit={handleSubmit} noValidate>
+          <motion.form
+            onSubmit={handleSubmit}
+            noValidate
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={vp}
+            transition={{ duration: 0.7, ease, delay: 0.28 }}
+          >
             <div className="form-field">
               <label htmlFor="name">Name</label>
               <input
@@ -108,7 +149,7 @@ const Contact = () => {
             <button type="submit" className="btn btn-accent">
               Send
             </button>
-          </form>
+          </motion.form>
         </div>
       </section>
 
