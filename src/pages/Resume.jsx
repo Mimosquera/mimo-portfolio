@@ -19,7 +19,7 @@ const Resume = () => {
   });
 
   return (
-  <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
+    <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
     <section className="section resume-section">
       <motion.p className="section-label" {...fadeUp()}>
         Background
