@@ -105,6 +105,16 @@ const Resume = () => {
             <p className="resume-block-title">Projects</p>
             <div className="resume-entry">
               <div className="entry-header">
+                <span className="entry-title">Vaulted</span>
+              </div>
+              <ul className="entry-list">
+                <li>App for cataloguing physical collections: cards, figures, vinyl, manga, games. Log what you own, add photos and notes, browse public vaults, and follow other collectors</li>
+                <li>React + Vite with Zustand, Node.js/Express API, PostgreSQL, Cloudinary; JWT auth and offline-first sync via IndexedDB</li>
+                <li>Live at <a href="https://vaulted-collecting.com" target="_blank" rel="noopener noreferrer">vaulted-collecting.com</a></li>
+              </ul>
+            </div>
+            <div className="resume-entry">
+              <div className="entry-header">
                 <span className="entry-title">New Flow</span>
               </div>
               <ul className="entry-list">

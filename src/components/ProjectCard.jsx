@@ -5,7 +5,7 @@ import { useEntryDelay } from '../context/TransitionDelay';
 
 const vp = { once: true, margin: '-40px' };
 
-const ProjectCard = ({ title, description, image, deploy, repo, containImage, emoji, emojiColor }) => {
+const ProjectCard = ({ title, description, image, deploy, repo, containImage, imageBg, emoji, emojiColor }) => {
   const { trigger } = useWebHaptics();
   const d = useEntryDelay();
 
@@ -13,7 +13,7 @@ const ProjectCard = ({ title, description, image, deploy, repo, containImage, em
     <article className="project-card">
       <motion.div
         className={`project-img-wrap${containImage ? ' project-img-contain' : ''}${emoji ? ' project-img-emoji' : ''}`}
-        style={emoji ? { background: emojiColor } : undefined}
+        style={{ background: emoji ? emojiColor : (imageBg ?? undefined) }}
         initial={{ opacity: 0, scale: 1.06 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={vp}
