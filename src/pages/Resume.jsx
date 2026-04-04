@@ -12,8 +12,8 @@ const Resume = () => {
   const d = useEntryDelay();
 
   const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: 24, filter: 'blur(4px)' },
-    whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
     viewport: vp,
     transition: { duration: 0.65, ease, delay: delay + d },
   });
@@ -63,7 +63,7 @@ const Resume = () => {
             <div className="resume-entry">
               <div className="entry-header">
                 <span className="entry-title">Full Stack Web Development</span>
-                <span className="entry-date">2024 &ndash; 2025</span>
+                <span className="entry-date">2024 - 2025</span>
               </div>
               <p className="entry-sub">edX Coding Bootcamp</p>
             </div>
@@ -89,7 +89,7 @@ const Resume = () => {
             <div className="resume-entry">
               <div className="entry-header">
                 <span className="entry-title">Freelance Web Developer</span>
-                <span className="entry-date">2024 &ndash; Present</span>
+                <span className="entry-date">2024 - Present</span>
               </div>
               <p className="entry-sub">Self-Employed, Virginia</p>
               <ul className="entry-list">

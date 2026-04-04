@@ -4,7 +4,7 @@ const projects = [
     title: 'Vaulted',
     description:
       'App for cataloguing physical collections: cards, figures, vinyl, manga, games. Log what you own, add photos and notes, and share your vault publicly. Built with React, Vite, Zustand, Node.js, PostgreSQL, and Cloudinary. Includes JWT auth and offline-first sync via IndexedDB.',
-    image: '/vaulted-logo.svg',
+    image: '/vaulted-logo-icon.png',
     containImage: true,
     imageBg: 'radial-gradient(ellipse at center, #1e0a3c 0%, #0d0118 60%, #050509 100%)',
     deploy: 'https://vaulted-collecting.com',

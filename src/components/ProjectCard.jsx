@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useWebHaptics } from 'web-haptics/react';
 import { ease } from '../utils/motion';
@@ -8,9 +9,26 @@ const vp = { once: true, margin: '-40px' };
 const ProjectCard = ({ title, description, image, deploy, repo, containImage, imageBg, emoji, emojiColor }) => {
   const { trigger } = useWebHaptics();
   const d = useEntryDelay();
+  const [open, setOpen] = useState(false);
+  const innerRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (!innerRef.current) return;
+    const measure = () => setHeight(innerRef.current.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(innerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  const toggle = () => {
+    trigger('selection');
+    setOpen(prev => !prev);
+  };
 
   return (
-    <article className="project-card">
+    <article className={`project-card${open ? ' project-card-open' : ''}`}>
       <motion.div
         className={`project-img-wrap${containImage ? ' project-img-contain' : ''}${emoji ? ' project-img-emoji' : ''}`}
         style={{ background: emoji ? emojiColor : (imageBg ?? undefined) }}
@@ -27,60 +45,67 @@ const ProjectCard = ({ title, description, image, deploy, repo, containImage, im
       </motion.div>
 
       <div className="project-body">
-        <motion.h3
+        <motion.button
+          className="project-toggle"
+          onClick={toggle}
+          aria-expanded={open}
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.45, ease, delay: 0.1 + d }}
         >
-          {title}
-        </motion.h3>
-
-        {description && (
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.4, ease, delay: 0.18 + d }}
+          <h3>{title}</h3>
+          <svg
+            className={`project-chevron${open ? ' project-chevron-open' : ''}`}
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
           >
-            {description}
-          </motion.p>
-        )}
+            <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.button>
 
-        {(deploy || repo) && (
-          <motion.div
-            className="project-actions"
-            initial={{ opacity: 0, y: 6 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.38, ease, delay: 0.28 + d }}
-          >
-            {deploy && (
-              <a
-                href={deploy}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-accent"
-                aria-label={`${title} — live demo, opens in new tab`}
-                onClick={() => trigger('light')}
-              >
-                Live App
-              </a>
+        <div
+          className="project-collapse"
+          style={{ height: open ? height : 0 }}
+        >
+          <div ref={innerRef} className="project-collapse-inner">
+            {description && <p>{description}</p>}
+
+            {(deploy || repo) && (
+              <div className="project-actions">
+                {deploy && (
+                  <a
+                    href={deploy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-accent"
+                    aria-label={`${title} live demo, opens in new tab`}
+                    onClick={() => trigger('light')}
+                    tabIndex={open ? 0 : -1}
+                  >
+                    Live App
+                  </a>
+                )}
+                {repo && (
+                  <a
+                    href={repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline"
+                    aria-label={`${title} source on GitHub, opens in new tab`}
+                    onClick={() => trigger('light')}
+                    tabIndex={open ? 0 : -1}
+                  >
+                    GitHub
+                  </a>
+                )}
+              </div>
             )}
-            {repo && (
-              <a
-                href={repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline"
-                aria-label={`${title} — source on GitHub, opens in new tab`}
-                onClick={() => trigger('light')}
-              >
-                GitHub
-              </a>
-            )}
-          </motion.div>
-        )}
+          </div>
+        </div>
       </div>
     </article>
   );

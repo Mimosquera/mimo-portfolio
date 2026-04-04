@@ -67,8 +67,8 @@ const Contact = () => {
       <section className="section">
         <motion.p
           className="section-label"
-          initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.6, ease, delay: d }}
         >
@@ -76,8 +76,8 @@ const Contact = () => {
         </motion.p>
         <motion.h2
           className="section-title"
-          initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.7, ease, delay: 0.08 + d }}
         >
@@ -88,8 +88,8 @@ const Contact = () => {
           <div>
             <motion.p
               className="contact-desc"
-              initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={vp}
               transition={{ duration: 0.65, ease, delay: 0.1 + d }}
             >

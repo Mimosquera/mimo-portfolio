@@ -3,10 +3,12 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
+const heroMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
 const particleOptions = {
   fpsLimit: 60,
   particles: {
-    number: { value: 55, density: { enable: true } },
+    number: { value: heroMobile ? 25 : 55, density: { enable: true } },
     color: { value: ['#c9a84c', '#e6e6e6', '#ffffff'] },
     opacity: { value: { min: 0.12, max: 0.42 } },
     size: { value: { min: 1, max: 2.2 } },
@@ -19,7 +21,7 @@ const particleOptions = {
       outModes: { default: 'out' },
     },
     links: {
-      enable: true,
+      enable: !heroMobile,
       distance: 145,
       color: '#c9a84c',
       opacity: 0.07,
@@ -28,7 +30,7 @@ const particleOptions = {
   },
   interactivity: {
     events: {
-      onHover: { enable: true, mode: 'repulse' },
+      onHover: { enable: !heroMobile, mode: 'repulse' },
       onClick: { enable: true, mode: 'push' },
     },
     modes: {
@@ -51,9 +53,9 @@ const Hero = () => {
   const nameChars = useMemo(() =>
     'Michael Mosquera'.split('').map(char => ({
       char,
-      x: (Math.random() - 0.5) * 600,
-      y: (Math.random() - 0.5) * 500,
-      rotate: (Math.random() - 0.5) * 120,
+      x: (Math.random() - 0.5) * (heroMobile ? 250 : 600),
+      y: (Math.random() - 0.5) * (heroMobile ? 200 : 500),
+      rotate: (Math.random() - 0.5) * (heroMobile ? 60 : 120),
     })),
   []);
 
@@ -100,8 +102,8 @@ const Hero = () => {
 
         <motion.p
           className="hero-role"
-          initial={{ opacity: 0, y: 28, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           Full Stack Developer

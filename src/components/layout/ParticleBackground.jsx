@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
 const options = {
   fpsLimit: 60,
   particles: {
-    number: { value: 45, density: { enable: true } },
+    number: { value: isMobile ? 20 : 45, density: { enable: true } },
     color: { value: ['#c9a84c', '#e6e6e6', '#ffffff'] },
     opacity: { value: { min: 0.06, max: 0.28 } },
     size: { value: { min: 1, max: 1.8 } },
@@ -18,7 +20,7 @@ const options = {
       outModes: { default: 'out' },
     },
     links: {
-      enable: true,
+      enable: !isMobile,
       distance: 130,
       color: '#c9a84c',
       opacity: 0.05,
