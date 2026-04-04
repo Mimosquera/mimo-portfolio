@@ -4,8 +4,8 @@
   --card: #1a1a1a;
   --text: #e6e6e6;
   --muted: #737373;
-  --accent: #c9a84c;
-  --accent-hi: #dbb96a;
+  --accent: #a78bfa;
+  --accent-hi: rgba(167, 139, 250, 0.85);
   --border: #262626;
   --nav-h: 64px;
   --max-w: 1080px;
@@ -176,7 +176,7 @@ button {
 }
 
 .nav-brand-glow {
-  text-shadow: 0 0 8px rgba(201, 168, 76, 0.55), 0 0 22px rgba(201, 168, 76, 0.2);
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.55), 0 0 22px rgba(96, 165, 250, 0.2);
 }
 
 .nav-links {
@@ -330,13 +330,6 @@ button {
   display: inline-block;
 }
 
-.hero-scroll-hint {
-  margin-top: 3.5rem;
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.38);
-  line-height: 1;
-}
-
 .hero-name {
   font-size: clamp(1.8rem, 7vw, 4.5rem);
   font-weight: 700;
@@ -452,12 +445,12 @@ button {
 }
 
 .project-card:hover {
-  border-color: rgba(201, 168, 76, 0.45);
+  border-color: rgba(96, 165, 250, 0.45);
   transform: translateY(-3px);
 }
 
 .project-card-open {
-  border-color: rgba(201, 168, 76, 0.3);
+  border-color: rgba(96, 165, 250, 0.3);
 }
 
 .project-img-wrap {
@@ -484,6 +477,7 @@ button {
 .project-img-contain img {
   object-fit: contain;
   padding: 1.5rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
 }
 
 .project-img-emoji {
@@ -497,6 +491,7 @@ button {
   line-height: 1;
   -webkit-user-select: none;
   user-select: none;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 
 .project-body {

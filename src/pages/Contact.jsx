@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useWebHaptics } from 'web-haptics/react';
-import { ease, vp } from '../utils/motion';
-import { useEntryDelay } from '../context/TransitionDelay';
 
 const EMPTY = { name: '', email: '', message: '' };
 
@@ -11,7 +9,6 @@ const Contact = () => {
   const [fieldErrors, setFieldErrors] = useState({});
   const [modal, setModal] = useState(null);
   const { trigger } = useWebHaptics();
-  const d = useEntryDelay();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -65,58 +62,23 @@ const Contact = () => {
   return (
     <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
       <section className="section">
-        <motion.p
-          className="section-label"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={vp}
-          transition={{ duration: 0.6, ease, delay: d }}
-        >
-          Contact
-        </motion.p>
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={vp}
-          transition={{ duration: 0.7, ease, delay: 0.08 + d }}
-        >
-          Get in Touch
-        </motion.h2>
+        <p className="section-label">Contact</p>
+        <h2 className="section-title">Get in Touch</h2>
 
         <div className="contact-layout">
           <div>
-            <motion.p
-              className="contact-desc"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.65, ease, delay: 0.1 + d }}
-            >
+            <p className="contact-desc">
               If you have a role or project in mind, reach out. I check my
               email every day.
-            </motion.p>
-            <motion.nav
-              className="contact-links"
-              aria-label="Contact details"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.55, ease, delay: 0.2 + d }}
-            >
+            </p>
+            <nav className="contact-links" aria-label="Contact details">
               <a href="tel:3477037291">347-703-7291</a>
               <a href="mailto:michael2000ny@gmail.com">michael2000ny@gmail.com</a>
-            </motion.nav>
+            </nav>
           </div>
 
           <form onSubmit={handleSubmit} noValidate>
-            <motion.div
-              className="form-field"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.55, ease, delay: 0.1 + d }}
-            >
+            <div className="form-field">
               <label htmlFor="name">Name</label>
               <input
                 id="name"
@@ -128,15 +90,9 @@ const Contact = () => {
                 autoComplete="name"
                 aria-invalid={fieldErrors.name ? 'true' : undefined}
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="form-field"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.55, ease, delay: 0.18 + d }}
-            >
+            <div className="form-field">
               <label htmlFor="email">Email</label>
               <input
                 id="email"
@@ -148,15 +104,9 @@ const Contact = () => {
                 autoComplete="email"
                 aria-invalid={fieldErrors.email ? 'true' : undefined}
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="form-field"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.55, ease, delay: 0.26 + d }}
-            >
+            <div className="form-field">
               <label htmlFor="message">Message</label>
               <textarea
                 id="message"
@@ -168,18 +118,11 @@ const Contact = () => {
                 autoComplete="off"
                 aria-invalid={fieldErrors.message ? 'true' : undefined}
               />
-            </motion.div>
+            </div>
 
-            <motion.button
-              type="submit"
-              className="btn btn-accent"
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.5, ease, delay: 0.34 + d }}
-            >
+            <button type="submit" className="btn btn-accent">
               Send
-            </motion.button>
+            </button>
           </form>
         </div>
       </section>
@@ -203,7 +146,7 @@ const Contact = () => {
               initial={{ opacity: 0, scale: 0.96, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 10 }}
-              transition={{ duration: 0.22, ease }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               onClick={e => e.stopPropagation()}
             >
               {modal === 'success' && (

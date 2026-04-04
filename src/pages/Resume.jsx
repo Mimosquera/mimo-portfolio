@@ -1,7 +1,3 @@
-import { motion } from 'motion/react';
-import { ease, vp } from '../utils/motion';
-import { useEntryDelay } from '../context/TransitionDelay';
-
 const skills = [
   'JavaScript', 'React', 'Node.js', 'Express',
   'PostgreSQL', 'MongoDB', 'React Router', 'HTML',
@@ -9,24 +5,11 @@ const skills = [
 ];
 
 const Resume = () => {
-  const d = useEntryDelay();
-
-  const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: vp,
-    transition: { duration: 0.65, ease, delay: delay + d },
-  });
-
   return (
     <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
     <section className="section resume-section">
-      <motion.p className="section-label" {...fadeUp()}>
-        Background
-      </motion.p>
-      <motion.h2 className="section-title" {...fadeUp(0.08)}>
-        Resume
-      </motion.h2>
+      <p className="section-label">Background</p>
+      <h2 className="section-title">Resume</h2>
       <a
         href="/Michael-Mosquera-Resume.pdf"
         className="btn btn-outline resume-dl-mobile"
@@ -40,25 +23,16 @@ const Resume = () => {
 
       <div className="resume-layout">
         <aside>
-          <motion.div className="resume-block" {...fadeUp(0.1)}>
+          <div className="resume-block">
             <p className="resume-block-title">Skills</p>
             <ul className="skill-tags">
-              {skills.map((skill, i) => (
-                <motion.li
-                  key={skill}
-                  className="skill-tag"
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, ease, delay: 0.1 + i * 0.04 + d }}
-                >
-                  {skill}
-                </motion.li>
+              {skills.map(skill => (
+                <li key={skill} className="skill-tag">{skill}</li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div className="resume-block" {...fadeUp(0.18)}>
+          <div className="resume-block">
             <p className="resume-block-title">Education</p>
             <div className="resume-entry">
               <div className="entry-header">
@@ -67,7 +41,7 @@ const Resume = () => {
               </div>
               <p className="entry-sub">edX Coding Bootcamp</p>
             </div>
-          </motion.div>
+          </div>
 
           <div className="resume-block resume-dl-desktop">
             <a
@@ -84,7 +58,7 @@ const Resume = () => {
         </aside>
 
         <div>
-          <motion.div className="resume-block" {...fadeUp(0.12)}>
+          <div className="resume-block">
             <p className="resume-block-title">Experience</p>
             <div className="resume-entry">
               <div className="entry-header">
@@ -99,9 +73,9 @@ const Resume = () => {
                 <li>Iterated on feedback directly with clients; got comfortable explaining technical tradeoffs in plain terms</li>
               </ul>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div className="resume-block" {...fadeUp(0.22)}>
+          <div className="resume-block">
             <p className="resume-block-title">Projects</p>
             <div className="resume-entry">
               <div className="entry-header">
@@ -141,7 +115,7 @@ const Resume = () => {
                 <li>Bootcamp group project built with vanilla HTML, CSS, and JS</li>
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

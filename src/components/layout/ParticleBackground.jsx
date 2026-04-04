@@ -8,7 +8,7 @@ const options = {
   fpsLimit: 60,
   particles: {
     number: { value: isMobile ? 20 : 45, density: { enable: true } },
-    color: { value: ['#c9a84c', '#e6e6e6', '#ffffff'] },
+    color: { value: ['#a78bfa', '#e6e6e6', '#ffffff'] },
     opacity: { value: { min: 0.06, max: 0.28 } },
     size: { value: { min: 1, max: 1.8 } },
     move: {
@@ -22,7 +22,7 @@ const options = {
     links: {
       enable: !isMobile,
       distance: 130,
-      color: '#c9a84c',
+      color: '#a78bfa',
       opacity: 0.05,
       width: 1,
     },

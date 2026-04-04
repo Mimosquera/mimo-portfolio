@@ -15,7 +15,10 @@ const projects = [
     title: 'New Flow',
     description:
       'Full-stack appointment management system for a barbershop. Customers book appointments and see live availability; staff manage schedules through an employee dashboard. React frontend, Node.js/Express API, PostgreSQL, JWT auth, bilingual support, and SMS/email notifications.',
-    image: '/new-flow-logo.png',
+    image: '/newflow-logo-transparent.png',
+    containImage: true,
+    imagePadding: '2.5rem',
+    imageBg: 'radial-gradient(ellipse at center, #1a3a4c 0%, #0c1e2a 60%, #050a0f 100%)',
     deploy: 'https://newflowbarbershop.com',
     repo: 'https://github.com/Mimosquera/New-Flow',
   },
@@ -28,6 +31,7 @@ const projects = [
     deploy: 'https://nicday.netlify.app',
     repo: 'https://github.com/Mimosquera/Happy-Nic-Day',
     containImage: true,
+    imageBg: 'radial-gradient(ellipse at center, #6b4c7a 0%, #3a2248 60%, #1a0e24 100%)',
   },
   {
     id: 4,
@@ -35,7 +39,7 @@ const projects = [
     description:
       'Pet name generator built as a bootcamp group project. Pick an animal type, choose a set of characteristics, and the app generates a name. Names can be saved and managed in local storage. Built with HTML, CSS, and JavaScript.',
     emoji: '🐾',
-    emojiColor: 'rgb(52, 122, 122)',
+    emojiColor: 'radial-gradient(ellipse at center, #3a7a6b 0%, #1a3d34 60%, #0e1f1a 100%)',
     deploy: 'https://achensen.github.io/Pet-Tag/index.html',
     repo: 'https://github.com/achensen/Pet-Tag',
   },

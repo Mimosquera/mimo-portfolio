@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
 import ProjectCard from '../components/ProjectCard';
 import projects from '../data/projects';
-import { fadeUp, ease, vp } from '../utils/motion';
-import { useEntryDelay } from '../context/TransitionDelay';
 
 const getColCount = () => {
   if (window.innerWidth <= 480) return 1;
@@ -12,7 +9,6 @@ const getColCount = () => {
 };
 
 const Portfolio = () => {
-  const d = useEntryDelay();
   const [colCount, setColCount] = useState(getColCount);
 
   useEffect(() => {
@@ -27,26 +23,8 @@ const Portfolio = () => {
   return (
     <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
       <section className="section">
-        <motion.p
-          className="section-label"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={vp}
-          transition={{ duration: 0.6, ease, delay: d }}
-        >
-          Work
-        </motion.p>
-        <motion.h2
-          className="section-title"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={vp}
-          transition={{ duration: 0.7, ease, delay: 0.08 + d }}
-        >
-          Portfolio
-        </motion.h2>
+        <p className="section-label">Work</p>
+        <h2 className="section-title">Portfolio</h2>
         <div className="projects-grid">
           {columns.map((col, ci) => (
             <div key={ci} className="projects-column">

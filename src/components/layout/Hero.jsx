@@ -9,7 +9,7 @@ const particleOptions = {
   fpsLimit: 60,
   particles: {
     number: { value: heroMobile ? 25 : 55, density: { enable: true } },
-    color: { value: ['#c9a84c', '#e6e6e6', '#ffffff'] },
+    color: { value: ['#a78bfa', '#e6e6e6', '#ffffff'] },
     opacity: { value: { min: 0.12, max: 0.42 } },
     size: { value: { min: 1, max: 2.2 } },
     move: {
@@ -23,7 +23,7 @@ const particleOptions = {
     links: {
       enable: !heroMobile,
       distance: 145,
-      color: '#c9a84c',
+      color: '#a78bfa',
       opacity: 0.07,
       width: 1,
     },
@@ -109,19 +109,6 @@ const Hero = () => {
           Full Stack Developer
         </motion.p>
 
-        <motion.div
-          className="hero-scroll-hint"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.8 }}
-        >
-          <motion.span
-            animate={{ y: [0, 7, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-          >
-            ↓
-          </motion.span>
-        </motion.div>
       </motion.div>
     </header>
   );

@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const CELL = 52;
-const COVER = 300;
-const HOLD = 80;
-const REVEAL = 300;
-const FADE = 65;
+const COVER = 180;
+const HOLD = 40;
+const REVEAL = 180;
+const FADE = 90;
 
 const shuffle = arr => {
   const a = [...arr];
@@ -42,7 +42,7 @@ const PixelTransition = () => {
     const cells = Array.from({ length: n }, (_, i) => ({
       x: (i % cols) * CELL,
       y: Math.floor(i / cols) * CELL,
-      color: Math.random() < 0.1 ? '#c9a84c' : '#0d0d0d',
+      color: Math.random() < 0.1 ? '#a78bfa' : '#0d0d0d',
     }));
 
     const coverOrder = shuffle(Array.from({ length: n }, (_, i) => i));
