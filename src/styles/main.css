@@ -472,7 +472,10 @@ button {
 .project-img-contain img {
   object-fit: contain;
   padding: 1.5rem;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+  filter:
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.06));
 }
 
 .project-img-emoji {
@@ -568,6 +571,10 @@ button {
 .project-detail-img.project-img-contain img {
   object-fit: contain;
   padding: 3rem;
+  filter:
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.06));
 }
 
 .project-detail-body {

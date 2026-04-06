@@ -6,7 +6,7 @@ const projects = [
       'App for cataloguing physical collections: cards, figures, vinyl, manga, games. Log what you own, add photos and notes, and share your vault publicly. Built with React, Vite, Zustand, Node.js, PostgreSQL, and Cloudinary. Includes JWT auth and offline-first sync via IndexedDB.',
     image: '/vaulted-logo-icon.png',
     containImage: true,
-    imageBg: 'radial-gradient(ellipse at center, #1e0a3c 0%, #0d0118 60%, #050509 100%)',
+    imageBg: 'radial-gradient(ellipse at center, #1c1a28 0%, #141320 60%, #0e0d16 100%)',
     deploy: 'https://vaulted-collecting.com',
     repo: 'https://github.com/Mimosquera/Vaulted',
   },
@@ -27,11 +27,11 @@ const projects = [
     title: 'Happy Nic Day',
     description:
       "Birthday app I built for my partner. Floating hearts, a wandering balloon with gyroscope shake detection, a candle you blow out using the mic and Web Audio API, randomized questions, and a compliment machine. Built with React and Vite.",
-    image: '/cake.png',
+    image: '/nic-day-heart-only.svg',
     deploy: 'https://nicday.netlify.app',
     repo: 'https://github.com/Mimosquera/Happy-Nic-Day',
     containImage: true,
-    imageBg: 'radial-gradient(ellipse at center, #6b4c7a 0%, #3a2248 60%, #1a0e24 100%)',
+    imageBg: 'radial-gradient(ellipse at center, #221430 0%, #150d1f 60%, #0d0a12 100%)',
   },
 ];
 
