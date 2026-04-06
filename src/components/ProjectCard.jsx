@@ -1,28 +1,16 @@
-import { useState, useRef, useEffect } from 'react';
 import { useWebHaptics } from 'web-haptics/react';
 
-const ProjectCard = ({ title, description, image, deploy, repo, containImage, imageBg, imagePadding, emoji, emojiColor }) => {
+const ProjectCard = ({ title, image, containImage, imageBg, imagePadding, emoji, emojiColor, onSelect }) => {
   const { trigger } = useWebHaptics();
-  const [open, setOpen] = useState(false);
-  const innerRef = useRef(null);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    if (!innerRef.current) return;
-    const measure = () => setHeight(innerRef.current.offsetHeight);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(innerRef.current);
-    return () => ro.disconnect();
-  }, []);
-
-  const toggle = () => {
-    trigger('selection');
-    setOpen(prev => !prev);
-  };
 
   return (
-    <article className={`project-card${open ? ' project-card-open' : ''}`}>
+    <article
+      className="project-card"
+      onClick={() => { trigger('selection'); onSelect(); }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger('selection'); onSelect(); } }}
+    >
       <div
         className={`project-img-wrap${containImage ? ' project-img-contain' : ''}${emoji ? ' project-img-emoji' : ''}`}
         style={{ background: emoji ? emojiColor : (imageBg ?? undefined) }}
@@ -33,65 +21,8 @@ const ProjectCard = ({ title, description, image, deploy, repo, containImage, im
           <img src={image} alt={title} style={imagePadding ? { padding: imagePadding } : undefined} />
         )}
       </div>
-
       <div className="project-body">
-        <button
-          className="project-toggle"
-          onClick={toggle}
-          aria-expanded={open}
-        >
-          <h3>{title}</h3>
-          <svg
-            className={`project-chevron${open ? ' project-chevron-open' : ''}`}
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-
-        <div
-          className="project-collapse"
-          style={{ height: open ? height : 0 }}
-        >
-          <div ref={innerRef} className="project-collapse-inner">
-            {description && <p>{description}</p>}
-
-            {(deploy || repo) && (
-              <div className="project-actions">
-                {deploy && (
-                  <a
-                    href={deploy}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-accent"
-                    aria-label={`${title} live demo, opens in new tab`}
-                    onClick={() => trigger('light')}
-                    tabIndex={open ? 0 : -1}
-                  >
-                    Live App
-                  </a>
-                )}
-                {repo && (
-                  <a
-                    href={repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-outline"
-                    aria-label={`${title} source on GitHub, opens in new tab`}
-                    onClick={() => trigger('light')}
-                    tabIndex={open ? 0 : -1}
-                  >
-                    GitHub
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
+        <h3>{title}</h3>
       </div>
     </article>
   );

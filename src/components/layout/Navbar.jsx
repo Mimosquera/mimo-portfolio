@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className={`site-nav${isSolid ? ' solid' : ''}`}>
       <div className="nav-container">
-        <NavLink to="/" className={`nav-brand${!isHome ? ' nav-brand-glow' : ''}`} end viewTransition={!isHome} onClick={() => trigger('selection')}>
+        <NavLink to="/" className="nav-brand" end viewTransition={!isHome} onClick={() => trigger('selection')} style={isHome ? { opacity: 0, pointerEvents: 'none' } : undefined}>
           MIMO
         </NavLink>
 

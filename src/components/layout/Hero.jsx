@@ -9,7 +9,7 @@ const particleOptions = {
   fpsLimit: 60,
   particles: {
     number: { value: heroMobile ? 25 : 55, density: { enable: true } },
-    color: { value: ['#a78bfa', '#e6e6e6', '#ffffff'] },
+    color: { value: ['#d4d4d4', '#a3a3a3', '#ffffff'] },
     opacity: { value: { min: 0.12, max: 0.42 } },
     size: { value: { min: 1, max: 2.2 } },
     move: {
@@ -21,9 +21,9 @@ const particleOptions = {
       outModes: { default: 'out' },
     },
     links: {
-      enable: !heroMobile,
-      distance: 145,
-      color: '#a78bfa',
+      enable: true,
+      distance: heroMobile ? 110 : 145,
+      color: '#d4d4d4',
       opacity: 0.07,
       width: 1,
     },

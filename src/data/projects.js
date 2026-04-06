@@ -33,16 +33,6 @@ const projects = [
     containImage: true,
     imageBg: 'radial-gradient(ellipse at center, #6b4c7a 0%, #3a2248 60%, #1a0e24 100%)',
   },
-  {
-    id: 4,
-    title: 'Pet Tag',
-    description:
-      'Pet name generator built as a bootcamp group project. Pick an animal type, choose a set of characteristics, and the app generates a name. Names can be saved and managed in local storage. Built with HTML, CSS, and JavaScript.',
-    emoji: '🐾',
-    emojiColor: 'radial-gradient(ellipse at center, #3a7a6b 0%, #1a3d34 60%, #0e1f1a 100%)',
-    deploy: 'https://achensen.github.io/Pet-Tag/index.html',
-    repo: 'https://github.com/achensen/Pet-Tag',
-  },
 ];
 
 export default projects;

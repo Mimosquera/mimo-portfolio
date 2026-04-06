@@ -42,7 +42,7 @@ const PixelTransition = () => {
     const cells = Array.from({ length: n }, (_, i) => ({
       x: (i % cols) * CELL,
       y: Math.floor(i / cols) * CELL,
-      color: Math.random() < 0.1 ? '#a78bfa' : '#0d0d0d',
+      color: Math.random() < 0.1 ? '#d4d4d4' : '#0d0d0d',
     }));
 
     const coverOrder = shuffle(Array.from({ length: n }, (_, i) => i));

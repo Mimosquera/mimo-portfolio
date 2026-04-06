@@ -66,18 +66,22 @@ const Contact = () => {
         <h2 className="section-title">Get in Touch</h2>
 
         <div className="contact-layout">
-          <div>
+          <div className="contact-info">
             <p className="contact-desc">
               If you have a role or project in mind, reach out. I check my
               email every day.
             </p>
-            <nav className="contact-links" aria-label="Contact details">
+            <div className="contact-detail">
+              <span className="contact-detail-label">Phone</span>
               <a href="tel:3477037291">347-703-7291</a>
+            </div>
+            <div className="contact-detail">
+              <span className="contact-detail-label">Email</span>
               <a href="mailto:michael2000ny@gmail.com">michael2000ny@gmail.com</a>
-            </nav>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} noValidate>
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
             <div className="form-field">
               <label htmlFor="name">Name</label>
               <input
