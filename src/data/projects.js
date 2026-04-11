@@ -28,7 +28,7 @@ const projects = [
     description:
       "Birthday app I built for my partner. Floating hearts, a wandering balloon with gyroscope shake detection, a candle you blow out using the mic and Web Audio API, randomized questions, and a compliment machine. Built with React and Vite.",
     image: '/nic-day-heart-only.svg',
-    deploy: 'https://nicday.netlify.app',
+    deploy: 'https://nicday.love',
     repo: 'https://github.com/Mimosquera/Happy-Nic-Day',
     containImage: true,
     imageBg: 'radial-gradient(ellipse at center, #221430 0%, #150d1f 60%, #0d0a12 100%)',
@@ -36,3 +36,6 @@ const projects = [
 ];
 
 export default projects;
+
+
+// try {let var}

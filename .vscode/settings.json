@@ -3,5 +3,8 @@
       "other": true,
       "comments": false,
       "strings": true
-    }
+    },
+    "cSpell.words": [
+      "newflow"
+    ]
   }  

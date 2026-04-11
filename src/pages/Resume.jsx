@@ -91,6 +91,7 @@ const Resume = () => {
           <ul className="entry-list">
             <li>Birthday app built for my partner: floating hearts, gyroscope balloon, microphone breath detection via Web Audio API, randomized questions, and a compliment machine</li>
             <li>Built with React and Vite; custom collision avoidance, motion permission caching, and canvas-confetti effects</li>
+            <li>Live at <a href="https://nicday.love" target="_blank" rel="noopener noreferrer">nicday.love</a></li>
           </ul>
         </div>
       </div>

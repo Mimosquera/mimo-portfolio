@@ -360,6 +360,12 @@ button {
   margin-bottom: 0.85rem;
 }
 
+.hero-role-wrap {
+  position: relative;
+  min-height: 1.5em;
+  margin-top: -0.25em;
+}
+
 .hero-role {
   font-size: clamp(0.7rem, 2.2vw, 1rem);
   font-weight: 400;
